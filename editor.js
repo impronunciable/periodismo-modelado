@@ -1,7 +1,7 @@
 
 
 // Constants
-var __EDITOR__ = true;
+var __MODULE__ = "Editor";
 
 var Editor = (function(){
 'use strict';
