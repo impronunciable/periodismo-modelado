@@ -15,27 +15,29 @@ var getId = (function getId () {
 return class Player {
   constructor () {
     this.checkpoints = []
+    console.log('asdsa')
 
     this.getData()
   }
 
-  
+
 
   // Get editor data from share textfield or localstorage
   getData () {
     try {
-      const data = document.querySelector('#share').value
+      const share = document.querySelector('#share') || {value: ''}
+      const data = share.value
       if (data.trim().length) {
         this.checkpoints = JSON.parse(data).checkpoints
       } else {
         const obj = JSON.parse(localStorage.getItem('modelado-editor'))
         this.checkpoints = (obj && obj.checkpoints) || []
-        checkpoints.forEach(c => c.id = getId())
+        this.checkpoints.forEach(c => c.id = getId())
       }
     } catch (e) {}
   }
 
-  
+
 
   // get checkpoint by id
   getCheckpoint (index) {
@@ -54,14 +56,12 @@ return class Player {
 
 
 
-  
-
   goToCheckpoint (index) {
     const cp = this.getCheckpoint(index)
     VR.body.moveTo.apply(VR.body, cp.position)
   }
 
- 
+
 }
 
 

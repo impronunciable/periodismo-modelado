@@ -112,6 +112,7 @@ return class Editor {
     this.checkpoints.push({
       position: [coord.x, coord.y, coord.z],
       name: '',
+      audio: '',
       id: getId()
     })
     this.renderCheckpoints()
@@ -124,6 +125,7 @@ return class Editor {
         <li id="cp-${curr.id}">
           <button class="delete-cp">X</button>
           <label>name: </label><input type="text" class="cp-name" value="${curr.name}" />
+          <label>audio: </label><input type="text" class="cp-audio" value="${curr.audio || ''}" />
           <p>position: (${curr.position.map(function(e){ return e.toFixed(2) }).join(', ')})</p>
         </li>`, '')
     this.checkpoints.forEach(c => {
@@ -140,14 +142,16 @@ return class Editor {
 
   saveData () {
     this.syncCheckpoints()
-    console.log(this.checkpoints)
     const data = JSON.stringify({ checkpoints: this.checkpoints })
     localStorage.setItem('modelado-editor', data)
     document.querySelector('#share').value = data
   }
 
   syncCheckpoints () {
-    this.checkpoints.forEach(cp => cp.name = document.querySelector(`#cp-${cp.id} input`).value)
+    this.checkpoints.forEach(cp => {
+      cp.name = document.querySelector(`#cp-${cp.id} input.cp-name`).value
+      cp.audio = document.querySelector(`#cp-${cp.id} input.cp-audio`).value
+    })
   }
 
 }
