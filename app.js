@@ -68,6 +68,8 @@ function wait(seconds) {
 }
 
 function init() {
+  var loader = document.getElementById('loader')
+  loader.parentNode.removeChild(loader)
   try{
     if(__MODULE__ === "Editor") {
       new Editor()

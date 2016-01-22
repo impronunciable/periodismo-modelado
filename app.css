@@ -1,0 +1,20 @@
+
+#loader {
+  z-index: 2;
+  background: #000;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-size: 30px;
+}
+
+#loader p {
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 100%;
+}
