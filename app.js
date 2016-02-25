@@ -56,7 +56,7 @@ function loadPlates(isInit, plates) {
     resolution: 1024
   });
   txt.moveZ(-1);
-  txt.material.opacity = 0.0
+  txt.material.opacity = 1.0
 
   var img;
 
