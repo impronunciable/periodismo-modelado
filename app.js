@@ -79,7 +79,7 @@ function loadPlates(isInit, plates) {
     }
 
     if(plate.image) {
-      img = VR.camera.image('/images/' + plate.image).moveZ(-1)
+      img = VR.camera.image('images/' + plate.image).moveZ(-1)
       if(plate.text) {
         img.setScale(.25, .25, .25).moveY(.25)
       }
