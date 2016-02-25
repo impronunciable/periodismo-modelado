@@ -1,5 +1,11 @@
 
 
+//var subs = VR.camera.text({
+//  text: 'Hola',
+//  font: '20px sans-serif'
+//});
+//subs.moveZ(-1).moveY(-0.5);
+
 // Constants
 var __MODULE__ = "Editor";
 
@@ -113,6 +119,7 @@ return class Editor {
       position: [coord.x, coord.y, coord.z],
       name: '',
       audio: '',
+      delay: 0,
       id: getId()
     })
     this.renderCheckpoints()
@@ -126,6 +133,7 @@ return class Editor {
           <button class="delete-cp">X</button>
           <label>name: </label><input type="text" class="cp-name" value="${curr.name}" />
           <label>audio: </label><input type="text" class="cp-audio" value="${curr.audio || ''}" />
+          <label>delay: </label><input type="text" class="cp-delay" value="${curr.delay || '0'}" />
           <p>position: (${curr.position.map(function(e){ return e.toFixed(2) }).join(', ')})</p>
         </li>`, '')
     this.checkpoints.forEach(c => {
@@ -151,6 +159,7 @@ return class Editor {
     this.checkpoints.forEach(cp => {
       cp.name = document.querySelector(`#cp-${cp.id} input.cp-name`).value
       cp.audio = document.querySelector(`#cp-${cp.id} input.cp-audio`).value
+      cp.delay = document.querySelector(`#cp-${cp.id} input.cp-delay`).value
     })
   }
 
