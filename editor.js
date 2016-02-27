@@ -136,7 +136,7 @@ return class Editor {
           <label>audio: </label><input type="text" class="cp-audio" value="${curr.audio || ''}" />
           <label>delay: </label><input type="text" class="cp-delay" value="${curr.delay || '0'}" />
           <label>duration: </label><input type="text" class="cp-duration" value="${curr.duration || '0'}" />
-          <p>position: (${curr.position.map(function(e){ return e.toFixed(2) }).join(', ')})</p>
+          <p>position: (${curr.position.map(function(e, i){ return `<input style="width: 50px;" type="text" value="${e.toFixed(2)}" class="cp-position-${i}" />` }).join(', ')})</p>
         </li>`, '')
     this.checkpoints.forEach(c => {
       document.querySelector(`#cp-${c.id} .delete-cp`).addEventListener('click', this.deleteCheckpoint.bind(this, c.id))
@@ -163,6 +163,9 @@ return class Editor {
       cp.audio = document.querySelector(`#cp-${cp.id} input.cp-audio`).value
       cp.delay = document.querySelector(`#cp-${cp.id} input.cp-delay`).value
       cp.duration = document.querySelector(`#cp-${cp.id} input.cp-duration`).value
+      cp.position[0] = parseFloat(document.querySelector(`#cp-${cp.id} input.cp-position-0`).value)
+      cp.position[1] = parseFloat(document.querySelector(`#cp-${cp.id} input.cp-position-1`).value)
+      cp.position[2] = parseFloat(document.querySelector(`#cp-${cp.id} input.cp-position-2`).value)
     })
   }
 
