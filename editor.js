@@ -120,6 +120,7 @@ return class Editor {
       name: '',
       audio: '',
       delay: 0,
+      duration: '',
       id: getId()
     })
     this.renderCheckpoints()
@@ -134,6 +135,7 @@ return class Editor {
           <label>name: </label><input type="text" class="cp-name" value="${curr.name}" />
           <label>audio: </label><input type="text" class="cp-audio" value="${curr.audio || ''}" />
           <label>delay: </label><input type="text" class="cp-delay" value="${curr.delay || '0'}" />
+          <label>duration: </label><input type="text" class="cp-duration" value="${curr.duration || '0'}" />
           <p>position: (${curr.position.map(function(e){ return e.toFixed(2) }).join(', ')})</p>
         </li>`, '')
     this.checkpoints.forEach(c => {
@@ -160,6 +162,7 @@ return class Editor {
       cp.name = document.querySelector(`#cp-${cp.id} input.cp-name`).value
       cp.audio = document.querySelector(`#cp-${cp.id} input.cp-audio`).value
       cp.delay = document.querySelector(`#cp-${cp.id} input.cp-delay`).value
+      cp.duration = document.querySelector(`#cp-${cp.id} input.cp-duration`).value
     })
   }
 

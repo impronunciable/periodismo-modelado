@@ -137,12 +137,14 @@ function goTo(cp) {
   var m1 = new THREE.Matrix4();
   var c = VR.body.position.clone()
   VR.body.object.quaternion.setFromRotationMatrix( m1 );
+  var distance = VR.body.position.distanceTo(to)
+  var velocity = distance / (cp.duration || distance)
   c.sub(to)
   c.normalize()
 
   return function(delta) {
-    VR.body.position.sub(c.clone().multiplyScalar(delta))
-    if(VR.body.position.distanceTo(to) < 1) {
+    VR.body.position.sub(c.clone().multiplyScalar(delta *velocity))
+    if(VR.body.position.distanceTo(to) < 0.01) {
       if (cp.audio) {
         if (currAudio) {
           currAudio.volume(0, 2)
