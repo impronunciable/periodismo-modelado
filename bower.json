@@ -1,0 +1,19 @@
+{
+  "name": "periodismo-modelado",
+  "version": "0.0.0",
+  "homepage": "https://github.com/impronunciable/periodismo-modelado",
+  "authors": [
+    "tinchoforever <tinchoforever@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "tweenjs": "~16.3.4"
+  }
+}

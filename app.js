@@ -40,7 +40,7 @@ middleware.init = middleware.next
 var loader = new THREE.ColladaLoader();
 
 
-loader.load('Sere2016.dae', function (result) {
+loader.load('Sere220416.dae', function (result) {
   result.scene.rotation.x = -Math.PI/2
   result.scene.rotation.z = -Math.PI/2
   result.scene.position.y = 1
@@ -138,10 +138,25 @@ function goTo(cp) {
   var c = VR.body.position.clone()
   VR.body.object.quaternion.setFromRotationMatrix( m1 );
   c.sub(to)
-  c.normalize()
+  c.normalize();
+  cp.tween = new TWEEN.Tween(VR.body.position).to({
+      x: p[0],
+      y: p[1],
+      z: p[2]
+  },5000).easing(TWEEN.Easing.Quadratic.InOut).onUpdate(function() {
+     
+  }).onComplete(function() {
+     
+  });
+  cp.started  = false;
 
   return function(delta) {
-    VR.body.position.sub(c.clone().multiplyScalar(delta))
+  
+    if (!cp.started){
+      cp.tween.start();
+      cp.started = true;
+    }
+    
     if(VR.body.position.distanceTo(to) < 1) {
       if (cp.audio) {
         if (currAudio) {
@@ -202,38 +217,38 @@ var initialPlates = [
     text: 'Periodismo Modelado 2015 - Buenos Aires, Argentina',
     delay: 5
   },
-  {
-    image: 'memoria-abierta.png',
-    delay: 5
-  },
-  {
-    text: 'Conecta tus auriculares',
-    image: 'Headphones-Play-Music-icon.png',
-    delay: 10
-  },
-  {
-    text: '¿Vas a usar esta experiencia en Google Cardboard?',
-    image: 'cardboard.png',
-    delay: 10
-  },
-  {
-    text: 'Coloca tu telefono dentro del Google Cardboard',
-    image: 'cardboard.png',
-    delay: 10
-  },
-  {
-    text: 'Durante todo momento podras mover tu cabeza para observar el lugar',
-    image: 'arrowfnish.png',
-    delay: 5
-  },
-  {
-    text: '"Episodio 1 - Mansión Seré Buenos Aires, Argentina - 1977"',
-    delay: 6
-  },
-  {
-    text: 'Entre 1976 y 1983 Argentina vivió la última y más terrible dictadura cívico-militar de su historia. Durante esos años, sucesivos gobiernos de facto orquestaron el secuestro, tortura y desaparición de 30 mil personas. Estos crímenes de lesa-humanidad eran perpetrados en Centros Clandestinos de Detención (CCD) como la Mansión Seré, ubicada en Morón, provincia de Buenos Aires. La siguiente experiencia intenta recrear este espacio siniestro, con las voces y testimonios de algunos de sus sobrevivientes.',
-    delay: 12
-  }
+  // {
+  //   image: 'memoria-abierta.png',
+  //   delay: 5
+  // },
+  // {
+  //   text: 'Conecta tus auriculares',
+  //   image: 'Headphones-Play-Music-icon.png',
+  //   delay: 10
+  // },
+  // {
+  //   text: '¿Vas a usar esta experiencia en Google Cardboard?',
+  //   image: 'cardboard.png',
+  //   delay: 10
+  // },
+  // {
+  //   text: 'Coloca tu telefono dentro del Google Cardboard',
+  //   image: 'cardboard.png',
+  //   delay: 10
+  // },
+  // {
+  //   text: 'Durante todo momento podras mover tu cabeza para observar el lugar',
+  //   image: 'arrowfnish.png',
+  //   delay: 5
+  // },
+  // {
+  //   text: '"Episodio 1 - Mansión Seré Buenos Aires, Argentina - 1977"',
+  //   delay: 6
+  // },
+  // {
+  //   text: 'Entre 1976 y 1983 Argentina vivió la última y más terrible dictadura cívico-militar de su historia. Durante esos años, sucesivos gobiernos de facto orquestaron el secuestro, tortura y desaparición de 30 mil personas. Estos crímenes de lesa-humanidad eran perpetrados en Centros Clandestinos de Detención (CCD) como la Mansión Seré, ubicada en Morón, provincia de Buenos Aires. La siguiente experiencia intenta recrear este espacio siniestro, con las voces y testimonios de algunos de sus sobrevivientes.',
+  //   delay: 12
+  // }
 ]
 
 var endingPlates = [
